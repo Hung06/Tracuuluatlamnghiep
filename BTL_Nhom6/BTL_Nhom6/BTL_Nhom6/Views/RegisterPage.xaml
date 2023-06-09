@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTL_Nhom6.Views.RegisterPage"
+             xmlns:vm ="clr-namespace:BTL_Nhom6.ViewModels"
+             Shell.BackgroundColor="White"
+             Shell.ForegroundColor="#212121">
+
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Frame Grid.Row="1" Margin="20,0" BorderColor="#1C375C" HasShadow="True" CornerRadius="30" Padding="20">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0"  Text="Đăng Ký" FontSize="22" FontAttributes="Bold" TextColor="#1C375C" HorizontalOptions="CenterAndExpand"></Label>
+                    <Entry 
+                        Grid.Row="1"
+                x:Name="userNameTextEntry"
+                Text="{Binding UserName}"
+                Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40"
+                Placeholder="Tên đăng nhập" 
+                FontSize="14"
+                ClearButtonVisibility="WhileEditing" />
+                    <Entry 
+                Grid.Row="2"
+                Text="{Binding Email}"
+                Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40"
+                ReturnCommand="{Binding RegisterCommand}"
+                Placeholder="Email" 
+                FontSize="14"
+                ClearButtonVisibility="WhileEditing" 
+                Visual="Material"/>
+                    <Entry 
+                Grid.Row="3"
+                Text="{Binding Mobile}"
+                Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40"
+                ReturnCommand="{Binding RegisterCommand}"
+                Placeholder="Số điện thoại" 
+                FontSize="14"               
+                ClearButtonVisibility="WhileEditing" 
+                Visual="Material"/>
+                    <Entry 
+                        Grid.Row="4"
+                x:Name="passWordTextEntry"
+                Text="{Binding PassWord}"
+                Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40"
+                ReturnCommand="{Binding RegisterCommand}"
+                Placeholder="Mật khẩu" 
+                FontSize="14"
+                IsPassword="True"
+                ClearButtonVisibility="WhileEditing" 
+                Visual="Material"/>
+                    <Entry 
+                        Grid.Row="5"
+                         Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="40"
+                Text="{Binding RePassWord}"
+                ReturnCommand="{Binding RegisterCommand}"
+                Placeholder="Nhập lại mật khẩu" 
+                FontSize="14"
+                IsPassword="True"
+                ClearButtonVisibility="WhileEditing" 
+                Visual="Material"/>
+                    <Button 
+                        BackgroundColor="#1C375C" CornerRadius="20" HeightRequest="40" Margin="0,20,0,0"
+                        Grid.Row="6"                
+                HorizontalOptions="Center" 
+                Text="Đăng ký"
+                TextTransform="Uppercase"
+                FontAttributes="Bold"
+                FontSize="15"                
+                Command="{Binding RegisterCommand}" 
+                WidthRequest="150"  />
+                    <StackLayout Grid.Row="7" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,0">
+                        <CheckBox HorizontalOptions="Start" VerticalOptions="Center" />
+                        <Label Text="Đồng ý với điều khoản sử dụng" VerticalOptions="Center"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

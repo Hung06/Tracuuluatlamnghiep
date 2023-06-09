@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTL_Nhom6.Views.ArticlesDetailPage"
+             xmlns:local="clr-namespace:BTL_Nhom6.ViewModels"
+             xmlns:model="clr-namespace:BTL_Nhom6.Models"
+             Shell.NavBarHasShadow="False"
+             BackgroundColor="#f5f5f7">
+    
+    <RefreshView x:DataType="local:ArticlesDetailViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <StackLayout Orientation="Vertical" Spacing="10" Padding="10,10,10,0">
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Nội dung điều khoản" TextColor="#212121" FontSize="24" Padding="10, 8, 5, 2" FontAttributes="Bold" />
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="10, 6,0,2" x:Name="Editing">
+                <Frame HeightRequest="18" WidthRequest="70" HasShadow="True" CornerRadius="8" BackgroundColor="White" Margin="0,5,0,0" x:Name="EditFrame">
+                    <Label Text="Chỉnh sửa" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Primary}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding EditItemCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+                <Frame HeightRequest="18" WidthRequest="30" HasShadow="True" CornerRadius="8" BackgroundColor="White" Margin="0,5,0,0" x:Name="DeleteFrame">
+                    <Label Text="Xóa" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Primary}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding DeleteCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+            </StackLayout>
+
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None"
+                HeightRequest="260"
+                >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10,10,10,5" Spacing="15" x:DataType="model:Articles">
+                            <StackLayout Orientation="Vertical" Spacing="12">
+                                <Frame HeightRequest="160" WidthRequest="350" HasShadow="True" CornerRadius="10" BackgroundColor="White">
+                                    <StackLayout Orientation="Vertical" Spacing="8">
+                                        <Label Text="{Binding Title}"
+                                           TextColor="#212121"
+                                           LineBreakMode="WordWrap"
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16"
+                                           FontAttributes="Bold" />
+
+                                    <Label Text="Nội dung:"
+                                           TextColor="#212121"
+                                           FontAttributes="Bold"
+                                           LineBreakMode="WordWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="14" />
+
+                                    <Label Text="{Binding Content}"
+                                           TextColor="#212121"
+                                           LineBreakMode="WordWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="16" /> 
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ArticlesDetailViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>             
+        </StackLayout>
+
+    </RefreshView>
+</ContentPage>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTL_Nhom6.Views.UpdateSectionPage"
+             xmlns:local="clr-namespace:BTL_Nhom6.ViewModels"
+             xmlns:model="clr-namespace:BTL_Nhom6.Models"
+             Shell.NavBarHasShadow="False"
+             BackgroundColor="#f5f5f7">
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Spacing="10" Padding="10,10,10,10" >
+            <StackLayout Orientation="Horizontal" >
+                <Label x:Name="ContentLabel" Text="Chỉnh sửa nội dung" TextColor="#212121" FontSize="24" Padding="10, 8, 0, 2" FontAttributes="Bold" />
+                
+            </StackLayout>
+            
+            <ScrollView Orientation="Vertical" >
+                <StackLayout Orientation="Vertical" Spacing="10" Padding="5, 0, 5, 20">
+
+                    <StackLayout Orientation="Vertical" Padding="5,5,5,0">
+                        <Label Text="Nội dung khoản" FontSize="Small" />
+                        <Editor Text="{Binding Content, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+                        <Label Text="Điều:" FontSize="Small" />
+                        <Entry Text="{Binding ArticleId, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+                        <Label Text="Nghị định:" FontSize="Small" />
+                        <Entry Text="{Binding DecreeId, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+                        <Label Text="Mức xử phạt thấp nhất:" FontSize="Small" />
+                        <Entry Text="{Binding Min, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+                        <Label Text="Mức xử phạt cao nhất:" FontSize="Small" />
+                        <Entry Text="{Binding Max, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+                        <Label Text="Mức xử phạt trung bình:" FontSize="Small" />
+                        <Entry Text="{Binding Avg, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+                        <Label Text="Ngày tạo" FontSize="Small" />
+                        <Entry Text="{Binding CreateTime, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+                        <Label Text="Ngày cập nhật" FontSize="Small" />
+                        <Entry Text="{Binding UpdateTime, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" x:Name="Buttons">
+                        <Button Text="Hủy" Command="{Binding CancelCommand}" FontAttributes="Bold" BackgroundColor="#007AFF" CornerRadius="14"></Button>
+                        <Button Text="Lưu" Command="{Binding SaveCommand}"  FontAttributes="Bold" BackgroundColor="#007AFF" CornerRadius="14"></Button>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" x:Name="DeleteButton">
+                            <Frame HeightRequest="20" WidthRequest="30" HasShadow="True" CornerRadius="8" BackgroundColor="White" Margin="0,5,0,0" >
+                                <Label Text="Xóa" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Primary}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding DeleteCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

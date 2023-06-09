@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTL_Nhom6.Views.AccountPage"
+             xmlns:local="clr-namespace:BTL_Nhom6.ViewModels"
+             xmlns:model="clr-namespace:BTL_Nhom6.Models"
+             BackgroundColor="#f5f5f7"
+             Shell.NavBarHasShadow="False">
+
+
+    <RefreshView x:DataType="local:AccountViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <StackLayout Orientation="Vertical" Spacing="10" Padding="10,10,10,10">
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Tài khoản" TextColor="#212121" FontSize="24" Padding="10, 8, 5, 10" FontAttributes="Bold" />
+            </StackLayout>
+            <Image Source="account_img.png" WidthRequest="85" HeightRequest="85"  Margin = "0, 0, 0, 0" HorizontalOptions="CenterAndExpand"/>
+            <Label 
+                x:Name="AccountName"
+                Text="Khách"
+                TextColor="#212121"
+                LineBreakMode="WordWrap" 
+                FontAttributes="Bold"
+                Style="{DynamicResource ListItemTextStyle}" 
+                FontSize="16" HorizontalOptions="Center"/>
+
+            <Label 
+                x:Name="AccountDescription"
+                Text="Bạn đang đăng nhập bằng tài khoản khách"
+                TextColor="#212121"
+                LineBreakMode="WordWrap" 
+                Style="{DynamicResource ListItemTextStyle}" 
+                FontSize="13" HorizontalOptions="Center"/>
+
+            <Label 
+                x:Name="LoginButton"
+                Text="Đăng nhập với tư cách quản trị viên"
+                TextColor="#007AFF"
+                LineBreakMode="WordWrap" 
+                Style="{DynamicResource ListItemTextStyle}" 
+                FontSize="13" HorizontalOptions="Center"
+                >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer 
+                        NumberOfTapsRequired="1"
+                        Command="{Binding LoginCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None"
+                HeightRequest="259">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5,0,5,5" Spacing="10" x:DataType="model:Users">
+                            
+                                <StackLayout Orientation="Vertical" Spacing="10">
+                        
+                                    <Label Text="{Binding UserName}"
+                                       TextColor="#212121"
+                                       LineBreakMode="WordWrap" 
+                                       FontAttributes="Bold"
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="16" HorizontalOptions="Center"/>
+                                <Frame HeightRequest="35" WidthRequest="100"  HasShadow="True" CornerRadius="8" BackgroundColor="White" >
+                                    <StackLayout Orientation="Vertical" VerticalOptions="Start">
+                                        <Label Text="Email:" 
+                                           TextColor="#212121"
+                                           LineBreakMode="NoWrap" 
+                                           FontAttributes="Bold"
+                                           Style="{DynamicResource ListItemDetailTextStyle}" 
+                                           FontSize="13" />
+                                        <Label Text="{Binding Email}" 
+                                           TextColor="#212121"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13" />
+                                    </StackLayout>
+                                </Frame>
+                                <Frame HeightRequest="35" WidthRequest="100"  HasShadow="True" CornerRadius="8" BackgroundColor="White" >
+                                    <StackLayout Orientation="Vertical" VerticalOptions="Start">
+                                        <Label Text="Số điện thoại:" 
+                                           TextColor="#212121"
+                                           LineBreakMode="NoWrap" 
+                                           FontAttributes="Bold"
+                                           Style="{DynamicResource ListItemDetailTextStyle}" 
+                                           FontSize="13" />
+                                        <Label Text="{Binding Mobile}" 
+                                           TextColor="#212121"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13" />
+                                    </StackLayout>
+                                </Frame>
+                                <Frame HeightRequest="16" WidthRequest="100"  HasShadow="True" CornerRadius="8" BackgroundColor="White" >
+                                    <StackLayout Orientation="Vertical" VerticalOptions="Start">
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                                            <Image Source="editing.png" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="Chỉnh sửa thông tin" FontSize="14" FontAttributes="Bold" TextColor="#007AFF"/>
+                                            <Image Source="chevron_right.png" WidthRequest="13" HeightRequest="13"  Margin = "0, 0, 10, 0" HorizontalOptions="EndAndExpand" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:AccountViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout Padding="5,0,5,5" Spacing="10" x:Name="Buttons">
+                <Frame HeightRequest="18" WidthRequest="100"  HasShadow="True" CornerRadius="8" BackgroundColor="White" >
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+                        <Image Source="password.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="Đổi mật khẩu" FontSize="14" FontAttributes="Bold" TextColor="#007AFF">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ChangePassword}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image Source="chevron_right.png" WidthRequest="13" HeightRequest="13"  Margin = "0, 0, 10, 0" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HeightRequest="18" WidthRequest="100"  HasShadow="True" CornerRadius="8" BackgroundColor="White" >
+                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+                        <Image Source="log_out.png" WidthRequest="24" HeightRequest="24" />
+                        <Label Text="Đăng xuất" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Primary}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding LogoutCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Image Source="chevron_right.png" WidthRequest="13" HeightRequest="13"  Margin = "0, 0, 10, 0" HorizontalOptions="EndAndExpand">
+                            
+                        </Image>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            
+            
+            
+        </StackLayout>
+    </RefreshView>
+</ContentPage>

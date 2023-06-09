@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTL_Nhom6.Views.AboutPage"
+             xmlns:vm="clr-namespace:BTL_Nhom6.ViewModels"
+             Shell.NavBarHasShadow="False"
+             BackgroundColor="#f5f5f7">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Style TargetType="Label" x:Key="HeadingStyle">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="0,10,0,5" />
+            </Style>
+            <Style TargetType="Label" x:Key="ContentStyle">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="20">
+        <Label Text="Mục tiêu:" Style="{StaticResource HeadingStyle}" />
+        <Label Text="Hỗ trợ quá trình xử phạt vi phạm hành chính lĩnh vực lâm nghiệp" Style="{StaticResource ContentStyle}" />
+        <Label Text="Đối tượng người dùng:" Style="{StaticResource HeadingStyle}" />
+        <Label Text="Nhân viên phòng Lâm nghiệp, cán bộ quản lý lâm nghiệp, người dân" Style="{StaticResource ContentStyle}" />
+        <Label Text="Chức năng:" Style="{StaticResource HeadingStyle}" />
+        <Label Text="Cung cấp thông tin về quy định pháp luật về lâm nghiệp, hướng dẫn thủ tục xử phạt vi phạm hành chính lĩnh vực lâm nghiệp, cung cấp thông tin về các loại cây trồng, giống cây trồng, kỹ thuật trồng cây, chăm sóc cây trồng, bảo vệ rừng, phòng chống cháy rừng" Style="{StaticResource ContentStyle}" />
+        <Label Text="Công nghệ sử dụng:" Style="{StaticResource HeadingStyle}" />
+        <Label Text="Xamarin.Forms, C#" Style="{StaticResource ContentStyle}" />
+        <Label Text="Liên hệ:" Style="{StaticResource HeadingStyle}" />
+        <Label Text="Email: your.email@example.com" Style="{StaticResource ContentStyle}" />
+        <Label Text="Số điện thoại: 0123456789" Style="{StaticResource ContentStyle}" />
+    </StackLayout>
+
+
+</ContentPage>

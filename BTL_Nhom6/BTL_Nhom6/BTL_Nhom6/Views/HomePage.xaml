@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTL_Nhom6.Views.HomePage"
+             xmlns:local="clr-namespace:BTL_Nhom6.ViewModels"
+             xmlns:model="clr-namespace:BTL_Nhom6.Models"
+             BackgroundColor="#f5f5f7"
+             Shell.NavBarHasShadow="False">
+    
+        <StackLayout Orientation="Vertical" Spacing="10" Padding="10,10,10,0" x:DataType="local:HomeViewModel">
+        <StackLayout Orientation="Horizontal" >
+            <Label Text="Xin chào," TextColor="#212121" FontSize="24" Padding="15, 8, 0, 2" FontAttributes="Bold"/>
+            <Label Text="{Binding UserName}"  TextColor="#007AFF" FontSize="24" Padding="0, 8, 0, 2" FontAttributes="Bold"/>
+        </StackLayout>
+        <SearchBar Placeholder="Tìm kiếm" TextChanged="SearchBar_TextChanged" Margin="0,0,5,0" x:Name="SearchBarFocus" />
+        <ScrollView>
+                <StackLayout Orientation="Vertical">
+
+                <CollectionView ItemsSource="{Binding Items}" SelectionMode="None" x:Name="ItemsListView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10,10,10,5" Spacing="15" x:DataType="model:Sections" >
+                                <Frame CornerRadius="14">
+                                    <StackLayout Orientation="Vertical" Spacing="12">
+                                        <Label Text="{Binding Title}" TextColor="#212121" 
+                                                    FontAttributes="Bold"
+                                                    LineBreakMode="TailTruncation" 
+                                                    Style="{DynamicResource ListItemTextStyle}" 
+                                                    FontSize="Medium" />
+                                        <Label Text="{Binding Content}"
+                                                    TextColor="#212121"
+                                                    FontAttributes="Bold"
+                                                    LineBreakMode="TailTruncation" 
+                                                    Style="{DynamicResource ListItemTextStyle}" 
+                                                    FontSize="Small" />
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Label Text="Khung xử phạt:"
+                                                    TextColor="#212121"
+                                                    LineBreakMode="WordWrap" 
+                                                    Style="{DynamicResource ListItemTextStyle}" 
+                                                    FontSize="Small" />
+                                            <Label Text="{Binding Min}"
+                                       TextColor="#212121"
+                                       LineBreakMode="WordWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="Small" />
+
+                                            <Label Text="-"
+                                       TextColor="#212121"
+                                       LineBreakMode="WordWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="Small" />
+                                            <Label Text="{Binding Max}"
+                                       TextColor="#212121"
+                                       LineBreakMode="WordWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="Small" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" >
+                                            <Label Text="Mức xử phạt:"
+                                       TextColor="#212121"
+                                       LineBreakMode="WordWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="Small" />
+                                            <Label Text="{Binding Avg}"
+                                       TextColor="#212121"
+                                       LineBreakMode="WordWrap" 
+                                       Style="{DynamicResource ListItemTextStyle}" 
+                                       FontSize="Small" />
+
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+
+    </StackLayout>
+    
+</ContentPage>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTL_Nhom6.Views.AccountDetailPage"
+             xmlns:local="clr-namespace:BTL_Nhom6.ViewModels"
+             xmlns:model="clr-namespace:BTL_Nhom6.Models"
+             Shell.NavBarHasShadow="False"
+             BackgroundColor="#f5f5f7">
+
+    <StackLayout Orientation="Vertical" Spacing="10" Padding="10,10,10,0">
+        <StackLayout Orientation="Horizontal" >
+            <Label Text="Chỉnh sửa thông tin" TextColor="#212121" FontSize="24" Padding="10, 8, 5, 2" FontAttributes="Bold" />
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Padding="5,5,5,0">
+            <Label Text="Tên tài khoản" FontSize="Small" />
+            <Editor Text="{Binding UserName, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" />
+            <Label Text="Email" FontSize="Small" />
+            <Editor Text="{Binding Email, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Số điện thoại" FontSize="Small" />
+            <Entry Text="{Binding Mobile, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Hủy" Command="{Binding CancelCommand}" FontAttributes="Bold" BackgroundColor="#007AFF" CornerRadius="14"></Button>
+            <Button Text="Lưu" Command="{Binding SaveCommand}"  FontAttributes="Bold" BackgroundColor="#007AFF" CornerRadius="14"></Button>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

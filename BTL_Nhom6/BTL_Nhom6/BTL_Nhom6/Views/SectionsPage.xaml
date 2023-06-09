@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BTL_Nhom6.Views.SectionsPage"
+             xmlns:local="clr-namespace:BTL_Nhom6.ViewModels"
+             xmlns:model="clr-namespace:BTL_Nhom6.Models"
+             BackgroundColor="#f5f5f7"
+             Shell.NavBarHasShadow="False">
+
+    
+    
+    <RefreshView x:DataType="local:SectionsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <StackLayout Orientation="Vertical" Spacing="10" Padding="10,10,10,10">
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="Khoản" TextColor="#212121" FontSize="24" Padding="10, 8, 5, 10" FontAttributes="Bold" />
+
+            </StackLayout>
+            
+                <Label Text="{Binding Text}"
+               TextColor="#212121"
+               LineBreakMode="WordWrap" 
+               Style="{DynamicResource ListItemTextStyle}" 
+               FontSize="16"
+               FontAttributes="Bold"
+                   HorizontalOptions="FillAndExpand"
+               Padding="10,0,10,15"/>
+            
+            
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10,5,10,20" Spacing="20" x:DataType="model:Sections">
+                            <StackLayout Orientation="Vertical" Spacing="12">
+                                <StackLayout Orientation="Horizontal" Padding="0, 0,0,2" x:Name="EditingSections">
+                                    <Frame HeightRequest="18" WidthRequest="70" HasShadow="True" CornerRadius="8" BackgroundColor="White" Margin="0,5,0,0" >
+                                        <Label Text="Chỉnh sửa" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource Primary}">
+                                        </Label>
+                                    </Frame>
+                                </StackLayout>
+                                <Label Text="{Binding Content}" 
+                                           TextColor="#212121"
+                                           LineBreakMode="CharacterWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13" />
+                                <Frame WidthRequest="400" HeightRequest="17" HorizontalOptions="StartAndExpand" CornerRadius="14">
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                        <Label Text="Min:"> </Label>                                   
+                                        <Label                                           
+                                            Text="{Binding Min}" 
+                                           TextColor="#212121"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13" 
+                                           VerticalOptions="CenterAndExpand"
+                                                Padding="0,1,0,0"/>
+                                        <Label Text="-" 
+                                           TextColor="#212121"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13" 
+                                           VerticalOptions="CenterAndExpand"
+                                                Padding="0,1,0,0"/>
+                                        <Label Text="Max:"></Label>
+                                        <Label Text="{Binding Max}" 
+                                           TextColor="#212121"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13"
+                                           VerticalOptions="CenterAndExpand"
+                                                Padding="0,1,0,0"/>
+                                        <Label Text="-" 
+                                           TextColor="#212121"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13" 
+                                           VerticalOptions="CenterAndExpand"
+                                                Padding="0,1,0,0"/>
+                                        <Label Text="Avg:"></Label>
+                                        <Label Text="{Binding Avg}" 
+                                           TextColor="#212121"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                            FontSize="13" 
+                                               VerticalOptions="CenterAndExpand"
+                                                Padding="0,1,0,0"/>
+                                    </StackLayout>
+                                </Frame>
+                                
+                            </StackLayout>
+                            
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:SectionsViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </RefreshView>
+</ContentPage>
